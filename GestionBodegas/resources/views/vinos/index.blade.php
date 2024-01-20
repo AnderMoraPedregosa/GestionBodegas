@@ -28,14 +28,22 @@
                     <td>{{ $vino->tipo }}</td>
                     <td>{{ $vino->anno }}</td>
                     <td>
+                        <a href="{{ route('vinos.show', $vino->id) }}" class="btn btn-info">
+                            <img src="{{ asset('images/ver.png') }}" alt="Ver">
+                        </a>
 
-                        <a href="{{ route('vinos.show', $vino->id) }}" class="btn btn-info">Ver</a>
-                        <a href="{{ route('vinos.edit', $vino->id) }}" class="btn btn-warning">Editar</a>
+                        <a href="{{ route('vinos.edit', $vino->id) }}" class="btn btn-warning">
+                            <img src="{{ asset('images/editar.png') }}" alt="Editar">
+                        </a>
+
                         <form action="{{ route('vinos.destroy', $vino->id) }}" method="post" style="display:inline">
                             @csrf
                             @method('DELETE')
-                            <button type="submit" class="btn btn-danger" onclick="return confirm('¿Estás seguro de querer eliminar este vino?')">Eliminar</button>
+                            <button type="submit" class="btn btn-danger" onclick="return confirm('¿Estás seguro de querer eliminar este vino?')">
+                                <img src="{{ asset('images/borrar.png') }}"alt="Eliminar">
+                            </button>
                         </form>
+
                     </td>
                 </tr>
             @endforeach

@@ -47,11 +47,13 @@
         @foreach($bodega->vinos as $vino)
             <li>
                 {{ $vino->nombre }} - {{ $vino->tipo }}
-                <a href="{{ route('vinos.show', $vino->id) }}">Ver</a>
-
+                <a href="{{ route('vinos.show', $vino->id) }}">
+                    <img src="{{ asset('images/editar.png') }}" alt="Ver">
+                </a>
 
             </li>
         @endforeach
     </ul>
     <a href="{{ route('vinos.create', $bodega->id) }}">Añadir Vino</a>
+
 @endsection
