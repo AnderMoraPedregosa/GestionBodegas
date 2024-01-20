@@ -4,30 +4,56 @@
 @section('content')
     <h1>Detalles de la Bodega</h1>
 
-    <p><strong>Nombre:</strong> {{ $bodega->nombre }}</p>
-    <p><strong>Dirección:</strong> {{ $bodega->direccion }}</p>
-    <p><strong>Email:</strong> {{ $bodega->email }}</p>
-    <p><strong>Teléfono:</strong> {{ $bodega->telefono }}</p>
-    <p><strong>Persona de Contacto:</strong> {{ $bodega->persona_contacto }}</p>
-    <p><strong>Año de Fundación:</strong> {{ $bodega->anno_fundacion }}</p>
-    <p><strong>Comentarios:</strong> {{ $bodega->comentarios }}</p>
-    <p><strong>Tiene Restaurante:</strong> {{ $bodega->tiene_restaurante ? 'Sí' : 'No' }}</p>
-    <p><strong>Tiene Hotel:</strong> {{ $bodega->tiene_hotel ? 'Sí' : 'No' }}</p>
-
+    <table class="table" border="1">
+        <tr>
+            <th>Nombre</th>
+            <td>{{ $bodega->nombre }}</td>
+        </tr>
+        <tr>
+            <th>Dirección</th>
+            <td>{{ $bodega->direccion }}</td>
+        </tr>
+        <tr>
+            <th>Email</th>
+            <td>{{ $bodega->email }}</td>
+        </tr>
+        <tr>
+            <th>Teléfono</th>
+            <td>{{ $bodega->telefono }}</td>
+        </tr>
+        <tr>
+            <th>Persona de Contacto</th>
+            <td>{{ $bodega->persona_contacto }}</td>
+        </tr>
+        <tr>
+            <th>Año de Fundación</th>
+            <td>{{ $bodega->anno_fundacion }}</td>
+        </tr>
+        <tr>
+            <th>Comentarios</th>
+            <td>{{ $bodega->comentarios }}</td>
+        </tr>
+        <tr>
+            <th>Tiene Restaurante</th>
+            <td>{{ $bodega->tiene_restaurante ? 'Sí' : 'No' }}</td>
+        </tr>
+        <tr>
+            <th>Tiene Hotel</th>
+            <td>{{ $bodega->tiene_hotel ? 'Sí' : 'No' }}</td>
+        </tr>
+    </table>
     <h2>Vinos Ofertados</h2>
     <ul>
         @foreach($bodega->vinos as $vino)
             <li>
                 {{ $vino->nombre }} - {{ $vino->tipo }}
                 <a href="{{ route('vinos.show', $vino->id) }}">Ver</a>
-                <form action="{{ route('vinos.destroy', $vino->id) }}" method="post">
-                    @csrf
-                    @method('DELETE')
-                    <button type="submit">Borrar</button>
-                </form>
+
+
             </li>
         @endforeach
     </ul>
+
 
     <a href="{{ route('vinos.create', $bodega->id) }}">Añadir Vino</a>
 @endsection

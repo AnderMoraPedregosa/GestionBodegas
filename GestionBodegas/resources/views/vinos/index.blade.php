@@ -1,12 +1,16 @@
-
 @extends('layouts.app')
 
 @section('content')
     <h1>Listado de Vinos</h1>
 
-    <a href="{{ route('vinos.create') }}" class="btn btn-primary">Añadir Vino</a>
+    @if ($bodega)
+    <a href="{{ route('bodegas.show', $bodega->id) }}" class="btn btn-secondary">Volver a Detalles de Bodega</a>
+@endif
+    <br>
+    <br>
 
-    <table class="table">
+
+    <table class="table" border="1">
         <thead>
             <tr>
                 <th>ID</th>
@@ -24,6 +28,7 @@
                     <td>{{ $vino->tipo }}</td>
                     <td>{{ $vino->anno }}</td>
                     <td>
+
                         <a href="{{ route('vinos.show', $vino->id) }}" class="btn btn-info">Ver</a>
                         <a href="{{ route('vinos.edit', $vino->id) }}" class="btn btn-warning">Editar</a>
                         <form action="{{ route('vinos.destroy', $vino->id) }}" method="post" style="display:inline">

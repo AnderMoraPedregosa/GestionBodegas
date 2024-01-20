@@ -11,7 +11,8 @@ class VinoController extends Controller
     public function index()
     {
         $vinos = Vino::all();
-        return view('vinos.index', compact('vinos'));
+        $bodega = $vinos->isNotEmpty() ? $vinos->first()->bodega : null;
+        return view('vinos.index', compact('vinos', 'bodega'));
     }
 
     public function create()
@@ -22,17 +23,17 @@ class VinoController extends Controller
 
     public function store(Request $request)
     {
-        $request->validate([
-            'bodega_id' => 'required|exists:bodegas,id',
-            'nombre' => 'required|string|max:255',
-            'tipo' => 'required|string|max:255',
-            'anno' => 'required|integer|min:1800|max:' . date('Y'),
-            'descripcion' => 'nullable|string',
+        $data = $request->validate([
+            'bodega_id' => 'required',
+            'nombre' => 'required',
+            'tipo' => 'required',
+            'anno' => 'required|numeric',
+            'descripcion' => 'nullable',
         ]);
 
-        Vino::create($request->all());
+        Vino::create($data);
 
-        return redirect()->route('vinos.index')->with('success', 'Vino añadido correctamente');
+        return redirect()->route('vinos.index')->with('success', 'Vino añadido exitosamente');
     }
 
     public function show(Vino $vino)
@@ -61,6 +62,7 @@ class VinoController extends Controller
 
     public function destroy(Vino $vino)
     {
+
         $vino->delete();
 
         return redirect()->route('vinos.index')->with('success', 'Vino eliminado correctamente');

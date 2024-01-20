@@ -32,10 +32,12 @@ class BodegaController extends Controller
 
         ]);
 
-        Bodega::create($request->all());
-
-        return redirect()->route('bodegas.index')->with('success', 'Bodega añadida correctamente');
-
+        try {
+            Bodega::create($request->all());
+            return redirect()->route('bodegas.index')->with('success', 'Bodega creada correctamente');
+        } catch (\Exception $e) {
+            return redirect()->back()->with('error', 'Error al crear la bodega: ' . $e->getMessage());
+        }
     }
 
     public function show(Bodega $bodega)

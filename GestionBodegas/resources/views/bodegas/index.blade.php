@@ -4,7 +4,7 @@
 @section('content')
     <h1>Listado de Bodegas</h1>
 
-    <table>
+    <table border="2">
         <thead>
             <tr>
                 <th>Nombre</th>
@@ -27,13 +27,17 @@
                         <form action="{{ route('bodegas.destroy', $bodega->id) }}" method="post">
                             @csrf
                             @method('DELETE')
-                            <button type="submit">Borrar</button>
+                            <button type="submit" onclick="return confirm('¿Estás seguro de querer eliminar esta bodega?')">Borrar</button>
                         </form>
                     </td>
                 </tr>
             @endforeach
         </tbody>
     </table>
+    <br>
+    <br>
+    <br>
+    <br>
 
     <a href="{{ route('bodegas.create') }}">Añadir Bodega</a>
 @endsection
