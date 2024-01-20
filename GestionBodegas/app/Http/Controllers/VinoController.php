@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Vino;
-use App\Models\Bodega; // Asegúrate de importar el modelo Bodega
+use App\Models\Bodega;
 
 class VinoController extends Controller
 {
@@ -14,9 +14,10 @@ class VinoController extends Controller
         return view('vinos.index', compact('vinos'));
     }
 
-    public function create(Bodega $bodega)
+    public function create()
     {
-        return view('vinos.create', compact('bodega'));
+        $bodegas = Bodega::all();
+        return view('vinos.create', compact('bodegas'));
     }
 
     public function store(Request $request)
@@ -27,7 +28,6 @@ class VinoController extends Controller
             'tipo' => 'required|string|max:255',
             'anno' => 'required|integer|min:1800|max:' . date('Y'),
             'descripcion' => 'nullable|string',
-
         ]);
 
         Vino::create($request->all());
@@ -52,7 +52,6 @@ class VinoController extends Controller
             'tipo' => 'required|string|max:255',
             'anno' => 'required|integer|min:1800|max:' . date('Y'),
             'descripcion' => 'nullable|string',
-
         ]);
 
         $vino->update($request->all());

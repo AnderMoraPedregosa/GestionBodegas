@@ -10,12 +10,12 @@ class CreateVinosTable extends Migration
     {
         Schema::create('vinos', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('bodega_id')->constrained(); // Asegura que existe una relación con la tabla de bodegas
+            $table->foreignId('bodega_id')->constrained();
             $table->string('nombre');
             $table->string('tipo');
             $table->integer('anno');
             $table->text('descripcion')->nullable();
-            // Agrega aquí las columnas necesarias para la tabla de vinos
+
 
             $table->timestamps();
         });

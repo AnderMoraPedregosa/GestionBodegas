@@ -13,6 +13,7 @@ use App\Http\Controllers\VinoController;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
+Route::get('/', [BodegaController::class, 'index'])->name('bodegas.index');
 Route::get('/bodegas', [BodegaController::class, 'index'])->name('bodegas.index');
 Route::get('/bodegas/create', [BodegaController::class, 'create'])->name('bodegas.create');
 Route::post('/bodegas/store', [BodegaController::class, 'store'])->name('bodegas.store');
