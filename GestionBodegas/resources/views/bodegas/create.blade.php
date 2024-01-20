@@ -70,7 +70,6 @@
                     <input type="radio" class="form-check-input" name="tiene_hotel" value="0" checked> No
                 </div>
             </div>
-
             <button type="submit" class="btn btn-primary">Añadir Bodega</button>
         </form>
     </div>

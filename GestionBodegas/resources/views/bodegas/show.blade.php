@@ -1,4 +1,4 @@
-{{-- resources/views/bodegas/show.blade.php --}}
+
 @extends('layouts.app')
 
 @section('content')
@@ -53,7 +53,5 @@
             </li>
         @endforeach
     </ul>
-
-
     <a href="{{ route('vinos.create', $bodega->id) }}">Añadir Vino</a>
 @endsection
